@@ -2,11 +2,26 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent"
+	android:gravity="center"
 	android:orientation="vertical" >
 
-	<TextView
+    <TextView
+    	android:id="@+id/textView1"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:text="@string/Tables"
+    	android:textAppearance="?android:attr/textAppearanceLarge" />
+
+	<GridView
+		android:id="@+id/gridView"
 		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:text="@string/hello" />
+		android:layout_height="fill_parent"
+		android:gravity="center"
+		android:columnWidth="220dp"
+		android:horizontalSpacing="10dp"
+		android:numColumns="2"
+		android:stretchMode="columnWidth"
+		android:verticalSpacing="10dp" >
+	</GridView>
 
 </LinearLayout>

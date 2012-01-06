@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string name="hello">Hello World!</string>
-	<string name="app_name">IOC - Tema2</string>
+	<string name="Tables">Tables</string>
+	<string name="app_name">CityGrill </string>
+	<string name="table_activity">CityGrill - Table</string>
 
 </resources>
