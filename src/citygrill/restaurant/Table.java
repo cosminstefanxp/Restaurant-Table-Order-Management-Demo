@@ -8,6 +8,8 @@ package citygrill.restaurant;
 
 import java.io.Serializable;
 
+import citygrill.data.TableOrder;
+
 /**
  * The Class Table.
  */
@@ -41,7 +43,13 @@ public class Table implements Serializable{
 	
 	/** The cur clients. */
 	public int curClients;
-
+	
+	/** The table order. */
+	public TableOrder tableOrder;
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "Table [id=" + id + ", empty=" + empty + ", curClients=" + curClients + ", maxClients="

@@ -20,6 +20,7 @@ import android.widget.GridView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import citygrill.data.DataProvider;
+import citygrill.data.TableOrder;
 import citygrill.restaurant.Table;
 
 import com.order.R;
@@ -80,6 +81,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 			        Toast.makeText(getApplicationContext(), customers[item] + " customers selected.", Toast.LENGTH_SHORT).show();
 			        table.empty=false;
 			        table.curClients=item+1;
+			        table.tableOrder=new TableOrder();
 			        MainActivity.this.gridview.invalidateViews();
 			    }
 			});
@@ -91,7 +93,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 		//If the table is not empty, start the Table Activity
 		else {
 			Intent myIntent = new Intent(this, TableActivity.class);
-			myIntent.putExtra("table", table);
+			myIntent.putExtra("tableID", table.id);
 			this.startActivity(myIntent);
 		}
 	}

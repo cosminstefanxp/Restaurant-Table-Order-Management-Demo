@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="vertical" android:layout_marginTop="5dp">
+
+    <TextView
+    	android:id="@+id/orderTitle"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_gravity="center"
+    	android:text="Order"
+    	android:textAppearance="?android:attr/textAppearanceLarge" android:textColor="#3b3" android:textStyle="bold" android:textSize="24dp"/>
+
+    <LinearLayout
+    	android:id="@+id/linearLayout1"
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content" android:padding="5dp">
+
+        <TextView
+        	android:id="@+id/orderCostText"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:layout_gravity="left"
+        	android:text="Cost: 0"
+        	android:textAppearance="?android:attr/textAppearanceMedium" android:paddingLeft="20dp"/>
+
+        <TextView
+        	android:id="@+id/orderDurationText"
+        	android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:layout_gravity="right"
+        	android:layout_marginLeft="5dp"
+        	android:gravity="right"
+        	android:text="Duration: 0"
+        	android:textAppearance="?android:attr/textAppearanceMedium" android:paddingRight="20dp"/>
+
+    </LinearLayout>
+
+    <ImageButton
+    	android:id="@+id/orderProductAdd"
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:src="@android:drawable/ic_input_add" android:layout_marginTop="10dp"/>
+
+    <LinearLayout
+    	android:id="@+id/linearLayout2"
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="vertical" android:background="#555">
+
+        <ListView
+        	android:id="@+id/orderListView"
+        	android:layout_width="fill_parent"
+        	android:layout_height="wrap_content" android:background="#000" android:layout_marginTop="1dp">
+        </ListView>
+
+    </LinearLayout>
+
+</LinearLayout>
