@@ -45,6 +45,8 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	    
 	    //Prepare the tables
 	    DataProvider.generateTables();
+	    DataProvider.generateProducts();
+	    DataProvider.generateProductCategories();
 	    tables=DataProvider.getTables();
 
 	    //Prepare the grid

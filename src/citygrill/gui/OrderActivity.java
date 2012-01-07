@@ -7,10 +7,12 @@
 package citygrill.gui;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import citygrill.data.DataProvider;
@@ -67,7 +69,10 @@ public class OrderActivity extends Activity implements OnClickListener {
 	    text.setText("Duration: "+order.duration+" min");
 	    
 	    listview=(ListView) findViewById(R.id.orderListView);
-	    listview.setAdapter(new OrderAdapter(this, order));	    
+	    listview.setAdapter(new OrderAdapter(this, order));	 
+	    
+	    ImageButton button=(ImageButton) findViewById(R.id.orderProductAdd);
+	    button.setOnClickListener(this);
 	}
 
 	/* Event triggered at click on "New Product button"
@@ -77,7 +82,10 @@ public class OrderActivity extends Activity implements OnClickListener {
 	 */
 	@Override
 	public void onClick(View arg0) {
-		
+		Intent myIntent = new Intent(this, ProductCategoriesActivity.class);
+		myIntent.putExtra("tableID", table.id);
+		myIntent.putExtra("orderID", order.id);
+		this.startActivity(myIntent);
 	}
 
 }

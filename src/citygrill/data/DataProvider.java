@@ -20,6 +20,7 @@ public class DataProvider {
 
 	public static ArrayList<Table> tables;
 	public static ArrayList<Product> products;
+	public static ArrayList<ProductCategory> categories;
 	
 	/**
 	 * Gets the tables in the restaurant.
@@ -97,7 +98,7 @@ public class DataProvider {
 		products.add(new Product("Alune", 4, R.drawable.other, Type.Other));
 		products.add(new Product("Nachos", 6.5f, R.drawable.other, Type.Other));
 	}
-	
+
 	/**
 	 * Gets the products.
 	 *
@@ -106,6 +107,45 @@ public class DataProvider {
 	public static ArrayList<Product> getProducts()
 	{
 		return products;
+	}
+	
+	/**
+	 * Generates the product categories.
+	 */
+	public static void generateProductCategories()
+	{
+		categories=new ArrayList<ProductCategory>();
+		categories.add(new ProductCategory("Bauturi Alcoolice", Type.Alcoholic, R.drawable.alcohol));
+		categories.add(new ProductCategory("Bauturi Nealcoolice", Type.NonAlcoholic, R.drawable.non_alcoholic));
+		categories.add(new ProductCategory("Mancaruri gatite", Type.MainDish, R.drawable.main_dish));
+		categories.add(new ProductCategory("Supe/Ciorbe",Type.Soup, R.drawable.soup));
+		categories.add(new ProductCategory("Deserturi", Type.Dessert, R.drawable.dessert));
+		categories.add(new ProductCategory("Diverse", Type.Other, R.drawable.other));		
+	}
+	
+	/**
+	 * Gets the product categories.
+	 *
+	 * @return the product categories
+	 */
+	public static ArrayList<ProductCategory> getProductCategories()
+	{
+		return categories;
+	}
+	
+	/**
+	 * Gets the products from a given category (of a given type).
+	 *
+	 * @param category the category
+	 * @return the products from category
+	 */
+	public ArrayList<Product> getProductsFromCategory(Type category)
+	{
+		ArrayList<Product> retProds=new ArrayList<Product>();
+		for(Product p:products)
+			if(p.type==category)
+				retProds.add(p);
+		return retProds;
 	}
 	
 	/**
