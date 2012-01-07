@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import citygrill.data.DataProvider;
 import citygrill.data.Order;
@@ -82,6 +83,7 @@ public class TableActivity extends Activity implements OnClickListener, OnItemCl
 	public void onClick(View arg0) {
 		table.tableOrder.orders.add(new Order());
 		this.listview.invalidateViews();
+		Toast.makeText(this, "Created a new order for this table", Toast.LENGTH_SHORT).show();
 	}
 
 	/* Event triggered on click on one of the orders

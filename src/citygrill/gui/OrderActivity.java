@@ -15,6 +15,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import citygrill.data.DataProvider;
 import citygrill.data.Order;
+import citygrill.data.OrderProduct;
+import citygrill.data.Product;
+import citygrill.data.Product.Type;
 import citygrill.restaurant.Table;
 
 import com.order.R;
@@ -50,6 +53,9 @@ public class OrderActivity extends Activity implements OnClickListener {
 	    order=DataProvider.getOrder(table.id, b.getInt("orderID"));
 	    Log.d("CG","Order activity for "+order);
 	    
+	    order.products.add(new OrderProduct(new Product("Pomana porcului", 25, R.drawable.main_dish, Type.MainDish)));
+	    order.products.add(new OrderProduct(new Product("Peroni", 7, R.drawable.alcohol, Type.Alcoholic)));
+	    
 	    //Set graphical data
 	    TextView text=(TextView) findViewById(R.id.orderTitle);
 	    text.setText("Order "+order.id);
@@ -60,17 +66,18 @@ public class OrderActivity extends Activity implements OnClickListener {
 	    text=(TextView) findViewById(R.id.orderDurationText);
 	    text.setText("Duration: "+order.duration+" min");
 	    
+	    listview=(ListView) findViewById(R.id.orderListView);
+	    listview.setAdapter(new OrderAdapter(this, order));	    
 	}
 
-	/* Event triggered at click on "New Order button"
+	/* Event triggered at click on "New Product button"
 	 * 
 	 * (non-Javadoc)
 	 * @see android.view.View.OnClickListener#onClick(android.view.View)
 	 */
 	@Override
 	public void onClick(View arg0) {
-		table.tableOrder.orders.add(new Order());
-		this.listview.invalidateViews();
+		
 	}
 
 }

@@ -6,7 +6,7 @@
  */
 package citygrill.data;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 /**
  * The Class Order.
@@ -19,8 +19,8 @@ public class Order {
 	/** The id. */
 	public int id;
 
-	/** The products, as a map of product and quantities. */
-	public HashMap<Product, Integer> products;
+	/** The ordered products. */
+	public ArrayList<OrderProduct> products;
 	
 	/** The total price. */
 	public float totalPrice;
@@ -33,7 +33,7 @@ public class Order {
 	 */
 	public Order() {
 		id=globalID++;
-		products=new HashMap<Product, Integer>();
+		products=new ArrayList<OrderProduct>();
 		totalPrice=0;
 		duration=10;
 	}

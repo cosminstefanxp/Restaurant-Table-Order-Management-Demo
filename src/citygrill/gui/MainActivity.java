@@ -44,6 +44,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	    setContentView(R.layout.main);
 	    
 	    //Prepare the tables
+	    DataProvider.generateTables();
 	    tables=DataProvider.getTables();
 
 	    //Prepare the grid

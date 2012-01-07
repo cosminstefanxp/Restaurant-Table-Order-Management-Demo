@@ -8,6 +8,9 @@ package citygrill.data;
 
 import java.util.ArrayList;
 
+import com.order.R;
+
+import citygrill.data.Product.Type;
 import citygrill.restaurant.Table;
 
 /**
@@ -16,13 +19,14 @@ import citygrill.restaurant.Table;
 public class DataProvider {
 
 	public static ArrayList<Table> tables;
+	public static ArrayList<Product> products;
 	
 	/**
 	 * Gets the tables in the restaurant.
 	 *
 	 * @return the tables
 	 */
-	public static ArrayList<Table> getTables()
+	public static void generateTables()
 	{
 		tables=new ArrayList<Table>();
 		tables.add(new Table(0,3));
@@ -37,7 +41,71 @@ public class DataProvider {
 		tables.get(4).empty=false; tables.get(4).curClients=5;
 		tables.get(2).empty=false; tables.get(2).curClients=3;
 		
+	}
+	
+	/**
+	 * Gets the tables.
+	 *
+	 * @return the tables
+	 */
+	public static ArrayList<Table> getTables()
+	{
 		return tables;
+	}
+	
+	/**
+	 * Generate products.
+	 */
+	public static void generateProducts()
+	{
+		products=new ArrayList<Product>();
+		products.add(new Product("Ciorba vacuta", 8, R.drawable.soup, Type.Soup));
+		products.add(new Product("Ciorba pui", 8, R.drawable.soup, Type.Soup));
+		products.add(new Product("Ciorba burta", 8.5f, R.drawable.soup, Type.Soup));
+		products.add(new Product("Supa de taitei", 7, R.drawable.soup, Type.Soup));
+		
+		products.add(new Product("Clatite", 6, R.drawable.dessert, Type.Dessert));
+		products.add(new Product("Papanasi", 12, R.drawable.dessert, Type.Dessert));
+		products.add(new Product("Placinta de mere", 8, R.drawable.dessert, Type.Dessert));
+		products.add(new Product("Placinta cu branza", 8, R.drawable.dessert, Type.Dessert));
+		products.add(new Product("Negresa", 10.5f, R.drawable.dessert, Type.Dessert));
+		
+		products.add(new Product("Snitele pui", 14, R.drawable.main_dish, Type.MainDish));
+		products.add(new Product("Snitele porc", 16, R.drawable.main_dish, Type.MainDish));
+		products.add(new Product("Copanele la gratar", 12, R.drawable.main_dish, Type.MainDish));
+		products.add(new Product("Tochitura dobrogeana", 13.5f, R.drawable.main_dish, Type.MainDish));
+		products.add(new Product("Musaca de cartofi", 14, R.drawable.main_dish, Type.MainDish));
+		products.add(new Product("Lasagna", 16, R.drawable.main_dish, Type.MainDish));
+		products.add(new Product("Spaghete bolognese", 14, R.drawable.main_dish, Type.MainDish));
+		products.add(new Product("Spaghete carbonara", 14.5f, R.drawable.main_dish, Type.MainDish));
+		products.add(new Product("Spaghete milaneze", 13, R.drawable.main_dish, Type.MainDish));
+		products.add(new Product("Platou pentru 2", 23, R.drawable.main_dish, Type.MainDish));
+		products.add(new Product("Pomana porcului", 25, R.drawable.main_dish, Type.MainDish));
+		
+		products.add(new Product("Peroni", 7, R.drawable.alcohol, Type.Alcoholic));
+		products.add(new Product("Bergenbier", 4.5f, R.drawable.alcohol, Type.Alcoholic));
+		products.add(new Product("Ursus", 5, R.drawable.alcohol, Type.Alcoholic));
+		products.add(new Product("Stella", 5, R.drawable.alcohol, Type.Alcoholic));
+		products.add(new Product("Pina Colada", 14, R.drawable.alcohol, Type.Alcoholic));
+		
+		products.add(new Product("Pepsi", 4, R.drawable.non_alcoholic, Type.NonAlcoholic));
+		products.add(new Product("Coca-Cola", 4, R.drawable.non_alcoholic, Type.NonAlcoholic));
+		products.add(new Product("Fanta", 4, R.drawable.non_alcoholic, Type.NonAlcoholic));
+		products.add(new Product("Prigat", 5, R.drawable.non_alcoholic, Type.NonAlcoholic));
+		products.add(new Product("Virgin Mary", 8, R.drawable.non_alcoholic, Type.NonAlcoholic));
+		
+		products.add(new Product("Alune", 4, R.drawable.other, Type.Other));
+		products.add(new Product("Nachos", 6.5f, R.drawable.other, Type.Other));
+	}
+	
+	/**
+	 * Gets the products.
+	 *
+	 * @return the products
+	 */
+	public static ArrayList<Product> getProducts()
+	{
+		return products;
 	}
 	
 	/**
@@ -65,6 +133,21 @@ public class DataProvider {
 	{
 		for(Order o: tables.get(tableID).tableOrder.orders)
 			if(o.id==orderID)
+				return o;
+		return null;
+	}
+	
+	/**
+	 * Gets an order product from a given order.
+	 *
+	 * @param order the order
+	 * @param product the product
+	 * @return the table
+	 */
+	public static OrderProduct getOrder(Order order, Product product)
+	{
+		for(OrderProduct o: order.products)
+			if(o.product==product)
 				return o;
 		return null;
 	}

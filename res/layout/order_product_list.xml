@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="horizontal" android:paddingTop="10dp">
+
+    <LinearLayout
+    	android:id="@+id/linearLayout2"
+    	android:layout_width="50dp"
+    	android:layout_height="fill_parent"
+    	android:orientation="vertical">
+
+        <ImageButton
+        	android:id="@+id/orderProductAddButton"
+        	android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:src="@android:drawable/ic_input_add" />
+
+        <ImageButton
+        	android:id="@+id/orderProductRemoveButton"
+        	android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:src="@android:drawable/ic_delete" />
+
+    </LinearLayout>
+
+    <LinearLayout
+    	android:id="@+id/linearLayout1"
+    	android:layout_width="190dp"
+    	android:layout_height="wrap_content"
+    	android:orientation="vertical"
+    	android:paddingLeft="3dp"
+    	android:paddingRight="3dp"
+    	android:paddingTop="15dp" >
+
+    	<TextView
+    		android:id="@+id/orderProdNameText"
+    		android:layout_width="fill_parent"
+    		android:layout_height="wrap_content"
+    		android:text="Product Name"
+    		android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    	<TextView
+    		android:id="@+id/orderProductQuantityText"
+    		android:layout_width="fill_parent"
+    		android:layout_height="wrap_content"
+    		android:text="Quantity"
+    		android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    	<TextView
+    		android:id="@+id/orderProductPriceText"
+    		android:layout_width="fill_parent"
+    		android:layout_height="wrap_content"
+    		android:text="Price"
+    		android:textAppearance="?android:attr/textAppearanceSmall" />
+    </LinearLayout>
+
+    <ImageView
+    	android:id="@+id/orderProdImage"
+    	android:layout_width="80dp"
+    	android:layout_height="100dp"
+    	android:layout_gravity="top"
+    	android:adjustViewBounds="true"
+    	android:gravity="center"
+    	android:scaleType="fitCenter"
+    	android:src="@drawable/food1" android:padding="2dp"/>
+
+</LinearLayout>

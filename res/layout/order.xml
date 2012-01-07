@@ -52,7 +52,7 @@
         <ListView
         	android:id="@+id/orderListView"
         	android:layout_width="fill_parent"
-        	android:layout_height="wrap_content" android:background="#000" android:layout_marginTop="1dp">
+        	android:layout_height="wrap_content" android:background="#000" android:layout_marginTop="1dp" android:dividerHeight="10.0sp" android:divider="@android:color/transparent">
         </ListView>
 
     </LinearLayout>
