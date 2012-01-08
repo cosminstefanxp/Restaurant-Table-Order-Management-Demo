@@ -55,7 +55,10 @@ public class Product {
 	
 	/** The duration. */
 	public int duration;
-
+	
+	/** The random generator. */
+	private static Random rand=new Random();
+	
 	/**
 	 * Instantiates a new product.
 	 *
@@ -71,7 +74,7 @@ public class Product {
 		this.resource = resource;
 		this.id = ++globalID;
 		this.type = type;
-		Random rand=new Random();
+		
 		this.duration=1+rand.nextInt()%15;	//generate a random duration, up to 15 minutes
 	}
 }
