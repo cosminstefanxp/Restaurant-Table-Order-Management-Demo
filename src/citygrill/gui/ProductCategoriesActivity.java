@@ -9,22 +9,15 @@ package citygrill.gui;
 import java.util.ArrayList;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.ImageButton;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import citygrill.data.DataProvider;
 import citygrill.data.Order;
 import citygrill.data.ProductCategory;
-import citygrill.data.TableOrder;
 import citygrill.restaurant.Table;
 
 import com.order.R;

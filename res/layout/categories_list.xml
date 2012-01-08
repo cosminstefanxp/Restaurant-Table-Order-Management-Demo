@@ -2,19 +2,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent"
-	android:orientation="vertical" >
+	android:orientation="vertical" 
+	android:gravity="center">
 
-    <ImageView
-    	android:id="@+id/categoryImage"
-    	android:layout_width="fill_parent"
-    	android:layout_height="wrap_content"
-    	android:src="@drawable/food1" />
+	<ImageView
+		android:id="@+id/categoryImage"
+		android:layout_width="160dp"
+		android:layout_height="160dp"
+		android:scaleType="fitXY"
+		android:src="@drawable/food1" />
 
-    <TextView
-    	android:id="@+id/categoryNameText"
-    	android:layout_width="fill_parent"
-    	android:layout_height="wrap_content"
-    	android:text="Food Category 1"
-    	android:textAppearance="?android:attr/textAppearanceLarge" android:gravity="center"/>
+	<TextView
+		android:id="@+id/categoryNameText"
+		android:layout_width="160dp"
+		android:layout_height="wrap_content"
+		android:gravity="center"
+		android:text="Food Category 1"
+		android:textSize="15dp" />
 
 </LinearLayout>
