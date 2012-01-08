@@ -15,11 +15,10 @@ import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import citygrill.data.DataProvider;
 import citygrill.data.Order;
-import citygrill.data.OrderProduct;
-import citygrill.data.Product;
-import citygrill.data.Product.Type;
+import citygrill.gui.adapters.OrderAdapter;
 import citygrill.restaurant.Table;
 
 import com.order.R;
@@ -55,10 +54,24 @@ public class OrderActivity extends Activity implements OnClickListener {
 	    order=DataProvider.getOrder(table.id, b.getInt("orderID"));
 	    Log.d("CG","Order activity for "+order);
 	    
-	    order.products.add(new OrderProduct(new Product("Pomana porcului", 25, R.drawable.main_dish, Type.MainDish)));
-	    order.products.add(new OrderProduct(new Product("Peroni", 7, R.drawable.alcohol, Type.Alcoholic)));
 	    
-	    //Set graphical data
+	    //Set adapters and handlers
+	    
+	    listview=(ListView) findViewById(R.id.orderListView);
+	    listview.setAdapter(new OrderAdapter(this, order));	 
+	    
+	    ImageButton button=(ImageButton) findViewById(R.id.orderProductAdd);
+	    button.setOnClickListener(this);
+	}
+	
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onStart()
+	 */
+	protected void onStart()
+	{
+		super.onStart();
+		
+		//Set graphical data
 	    TextView text=(TextView) findViewById(R.id.orderTitle);
 	    text.setText("Order "+order.id);
 	    
@@ -68,11 +81,17 @@ public class OrderActivity extends Activity implements OnClickListener {
 	    text=(TextView) findViewById(R.id.orderDurationText);
 	    text.setText("Duration: "+order.duration+" min");
 	    
-	    listview=(ListView) findViewById(R.id.orderListView);
-	    listview.setAdapter(new OrderAdapter(this, order));	 
-	    
-	    ImageButton button=(ImageButton) findViewById(R.id.orderProductAdd);
-	    button.setOnClickListener(this);
+	    listview.invalidateViews();
+		
+	}
+	
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onContentChanged()
+	 */
+	public void onContentChanged()
+	{
+		super.onContentChanged();
+		//onStart();
 	}
 
 	/* Event triggered at click on "New Product button"
@@ -85,7 +104,23 @@ public class OrderActivity extends Activity implements OnClickListener {
 		Intent myIntent = new Intent(this, ProductCategoriesActivity.class);
 		myIntent.putExtra("tableID", table.id);
 		myIntent.putExtra("orderID", order.id);
-		this.startActivity(myIntent);
+		this.startActivityForResult(myIntent,PICK_PRODUCT);
+	}
+	
+	private final static int PICK_PRODUCT=2;
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onActivityResult(int, int, android.content.Intent)
+	 */
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		Log.d("CG","Returned from Category selection with "+resultCode);
+		if (requestCode == PICK_PRODUCT) 
+		{
+			Log.d("CG","Request code is for PICK_PRODUCT");
+			if (resultCode == RESULT_OK) 
+			{
+				Toast.makeText(getBaseContext(), "Produs selectat cu succes!", Toast.LENGTH_SHORT).show();
+			}
+		}
 	}
 
 }

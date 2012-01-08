@@ -1,4 +1,4 @@
-package citygrill.gui;
+package citygrill.gui.adapters;
 
 import java.util.ArrayList;
 

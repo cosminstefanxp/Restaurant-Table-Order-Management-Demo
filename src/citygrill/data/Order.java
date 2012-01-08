@@ -35,7 +35,7 @@ public class Order {
 		id=globalID++;
 		products=new ArrayList<OrderProduct>();
 		totalPrice=0;
-		duration=10;
+		duration=0;
 	}
 
 	/* (non-Javadoc)

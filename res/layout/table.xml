@@ -20,12 +20,24 @@
     	android:text="Medium Text"
     	android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <ImageButton
-    	android:id="@+id/orderAddButton"
+    <LinearLayout
+    	android:id="@+id/linearLayout2"
     	android:layout_width="fill_parent"
-    	android:layout_height="wrap_content"
-    	android:layout_marginTop="10dp"
-    	android:src="@android:drawable/ic_input_add" />
+    	android:layout_height="wrap_content" android:layout_marginTop="10dp">
+
+        <ImageButton
+        	android:id="@+id/orderAddButton"
+        	android:layout_width="200dp"
+        	android:layout_height="wrap_content"
+        	android:src="@android:drawable/ic_input_add" />
+
+        <ImageButton
+        	android:id="@+id/tableOrderFinalizaButton"
+        	android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:src="@android:drawable/checkbox_on_background" />
+
+    </LinearLayout>
 
     <LinearLayout
     	android:id="@+id/linearLayout1"

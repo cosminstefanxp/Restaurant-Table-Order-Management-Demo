@@ -4,8 +4,9 @@
  * Stefan-Dobrin Cosmin
  * 342C4
  */
-package citygrill.gui;
+package citygrill.gui.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,6 +32,9 @@ public class OrderAdapter extends BaseAdapter {
 	/** The m context. */
 	private final Context mContext;
 	
+	/** The activity. */
+	private final Activity activity;
+	
 	/** The order. */
 	private Order order;
 	/** The inflater. */
@@ -42,10 +46,11 @@ public class OrderAdapter extends BaseAdapter {
 	 * @param c the c
 	 * @param order the order
 	 */
-	public OrderAdapter(Context c, Order order) {
-		this.mContext = c;
+	public OrderAdapter(Activity a, Order order) {
+		this.mContext = a.getBaseContext();
 		this.order=order;
-		mInflater = LayoutInflater.from(c);
+		mInflater = LayoutInflater.from(mContext);
+		this.activity=a;
 	}
 	
 	/* (non-Javadoc)
@@ -107,8 +112,8 @@ public class OrderAdapter extends BaseAdapter {
 		holder.quantity.setText("Quantity: "+product.quantity);
 		holder.price.setText("Price: "+product.product.price);
 		holder.image.setImageResource(product.product.resource);
-		holder.buttonAdd.setOnClickListener(new ButtonClickHandler(mContext, convertView, order, product, 1));
-		holder.buttonRemove.setOnClickListener(new ButtonClickHandler(mContext, convertView, order, product, -1));
+		holder.buttonAdd.setOnClickListener(new ButtonClickHandler(activity, convertView, order, product, 1));
+		holder.buttonRemove.setOnClickListener(new ButtonClickHandler(activity, convertView, order, product, -1));
 
 		return convertView;
 	}
@@ -155,8 +160,8 @@ public class OrderAdapter extends BaseAdapter {
 		/** The value with which the quantity is modified (should be 1 or -1). */
 		int addValue;
 		
-		/** The context. */
-		Context context;
+		/** The activity. */
+		Activity activity;
 		
 		/**
 		 * Instantiates a new button click handler.
@@ -164,11 +169,11 @@ public class OrderAdapter extends BaseAdapter {
 		 * @param orderProduct the order product
 		 * @param addValue the add value
 		 */
-		public ButtonClickHandler(Context context, View view, Order order, OrderProduct orderProd, int addValue) {
+		public ButtonClickHandler(Activity activity, View view, Order order, OrderProduct orderProd, int addValue) {
 			super();
 			this.order=order;
 			this.addValue=addValue;
-			this.context=context;
+			this.activity=activity;
 			this.orderProduct=orderProd;
 			this.associatedView=view;
 			
@@ -180,14 +185,15 @@ public class OrderAdapter extends BaseAdapter {
 		@Override
 		public void onClick(View v) {
 			orderProduct.quantity+=addValue;
+			order.totalPrice+=addValue*orderProduct.product.price;
 			Log.d("CG", "Quantity for "+orderProduct+" modified by "+addValue);
-			Toast.makeText(context, "Quantity for '"+orderProduct.product.name+"' modified by "+addValue, Toast.LENGTH_SHORT).show();
+			Toast.makeText(activity.getBaseContext(), "Quantity for '"+orderProduct.product.name+"' modified by "+addValue, Toast.LENGTH_SHORT).show();
 			//Delete the product from the order, if the quantity is 0
 			if(orderProduct.quantity==0)
 				order.products.remove(orderProduct);
 			//Refresh the graphics
 			((ListView)(associatedView.getParent())).invalidateViews();
-			
+			((TextView)activity.findViewById(R.id.orderCostText)).setText("Cost: "+order.totalPrice);
 		}
 		
 	}

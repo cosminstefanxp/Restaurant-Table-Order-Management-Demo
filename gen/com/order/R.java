@@ -21,7 +21,10 @@ public final class R {
         public static final int main_dish=0x7f020007;
         public static final int non_alcoholic=0x7f020008;
         public static final int other=0x7f020009;
-        public static final int soup=0x7f02000a;
+        public static final int pancakes=0x7f02000a;
+        public static final int pasta=0x7f02000b;
+        public static final int soda_cans=0x7f02000c;
+        public static final int soup=0x7f02000d;
     }
     public static final class id {
         public static final int categoriesGridView=0x7f050001;
@@ -49,7 +52,8 @@ public final class R {
         public static final int productsGridView=0x7f050014;
         public static final int productsTitle=0x7f050013;
         public static final int tableCustomers=0x7f050019;
-        public static final int tableListView=0x7f05001b;
+        public static final int tableListView=0x7f05001c;
+        public static final int tableOrderFinalizaButton=0x7f05001b;
         public static final int tableTitle=0x7f050018;
         public static final int textView1=0x7f050004;
     }

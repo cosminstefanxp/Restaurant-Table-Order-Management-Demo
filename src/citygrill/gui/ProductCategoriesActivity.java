@@ -9,6 +9,7 @@ package citygrill.gui;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,6 +19,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import citygrill.data.DataProvider;
 import citygrill.data.Order;
 import citygrill.data.ProductCategory;
+import citygrill.gui.adapters.CategoriesAdapter;
 import citygrill.restaurant.Table;
 
 import com.order.R;
@@ -26,7 +28,9 @@ import com.order.R;
  * The Class MainActivity.
  */
 public class ProductCategoriesActivity extends Activity implements OnItemClickListener {
-		
+	
+	private final static int PICK_PRODUCT=0;
+	
 	/** The table. */
 	Table table;
 	
@@ -74,7 +78,28 @@ public class ProductCategoriesActivity extends Activity implements OnItemClickLi
 	 */
 	@Override
 	public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-
+		Intent myIntent = new Intent(this, ProductsActivity.class);
+		myIntent.putExtra("tableID", table.id);
+		myIntent.putExtra("orderID", order.id);
+		myIntent.putExtra("category", categories.get(position).type);
+		this.startActivityForResult(myIntent,PICK_PRODUCT);
 	}
 
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onActivityResult(int, int, android.content.Intent)
+	 */
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		Log.d("CG","Returned from Product selection with "+resultCode);
+		if (requestCode == PICK_PRODUCT) 
+		{
+			Log.d("CG","Request code is for PICK_PRODUCT");
+			if (resultCode == RESULT_OK) 
+			{
+				//Return success, so the parent knows it was a successful selection
+				setResult(RESULT_OK);
+				finish();
+			}
+		}
+	}
+	
 }

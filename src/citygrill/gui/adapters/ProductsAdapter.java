@@ -4,7 +4,7 @@
  * Stefan-Dobrin Cosmin
  * 342C4
  */
-package citygrill.gui;
+package citygrill.gui.adapters;
 
 import java.util.ArrayList;
 
@@ -15,23 +15,24 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import citygrill.data.ProductCategory;
+import citygrill.data.Product;
 
 import com.order.R;
 
 /**
  * The Class OrderAdapter.
  */
-public class CategoriesAdapter extends BaseAdapter {
+public class ProductsAdapter extends BaseAdapter {
 	
 	/** The m context. */
+	@SuppressWarnings("unused")
 	private final Context mContext;
 	
 	/** The inflater. */
 	private LayoutInflater mInflater;
 	
 	/** The categories. */
-	private ArrayList<ProductCategory> categories;
+	private ArrayList<Product> products;
 
 	/**
 	 * Instantiates a new order adapter.
@@ -39,9 +40,9 @@ public class CategoriesAdapter extends BaseAdapter {
 	 * @param c the c
 	 * @param order the order
 	 */
-	public CategoriesAdapter(Context c, ArrayList<ProductCategory> categories) {
+	public ProductsAdapter(Context c, ArrayList<Product> products) {
 		this.mContext = c;
-		this.categories=categories;
+		this.products=products;
 		mInflater = LayoutInflater.from(c);
 	}
 	
@@ -50,7 +51,7 @@ public class CategoriesAdapter extends BaseAdapter {
 	 */
 	@Override
 	public int getCount() {
-		return categories.size();
+		return products.size();
 	}
 
 	/* (non-Javadoc)
@@ -58,7 +59,7 @@ public class CategoriesAdapter extends BaseAdapter {
 	 */
 	@Override
 	public Object getItem(int arg0) {
-		return categories.get(arg0);
+		return products.get(arg0);
 	}
 
 	/* (non-Javadoc)
@@ -78,24 +79,26 @@ public class CategoriesAdapter extends BaseAdapter {
 		
 		//Attempt to inflate a pre-existing View
 		if (convertView == null) {
-			convertView = mInflater.inflate(R.layout.categories_list, null);
+			convertView = mInflater.inflate(R.layout.products_list, null);
 			
 			//Crate a new holder that stores references to the Views in each entry in the list
 			holder = new ViewHolder();
-			holder.name = (TextView) convertView.findViewById(R.id.categoryNameText);
-			holder.image = (ImageView) convertView.findViewById(R.id.categoryImage);
+			holder.name = (TextView) convertView.findViewById(R.id.productNameText);
+			holder.price = (TextView) convertView.findViewById(R.id.productPriceText);
+			holder.image = (ImageView) convertView.findViewById(R.id.productImage);
 
 			//Associate the view references as a tag, to the entry in the list
 			convertView.setTag(holder);
 		} 
-		//I a convertView exists, just popup the already prepared references to the views
+		//If a convertView exists, just popup the already prepared references to the views
 		else {
 			holder = (ViewHolder) convertView.getTag();
 		}
 
 		//Assign the data accordingly
-		holder.name.setText(categories.get(position).name);
-		holder.image.setImageResource(categories.get(position).resource);
+		holder.name.setText(products.get(position).name);
+		holder.price.setText("Price: "+Float.toString(products.get(position).price));
+		holder.image.setImageResource(products.get(position).resource);
 
 		return convertView;
 	}
@@ -107,6 +110,9 @@ public class CategoriesAdapter extends BaseAdapter {
 
 		/** The name. */
 		TextView name;
+		
+		/** The price. */
+		TextView price;
 		
 		/** The image for the category. */
 		ImageView image;

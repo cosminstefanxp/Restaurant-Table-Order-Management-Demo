@@ -65,7 +65,7 @@ public class DataProvider {
 		products.add(new Product("Ciorba burta", 8.5f, R.drawable.soup, Type.Soup));
 		products.add(new Product("Supa de taitei", 7, R.drawable.soup, Type.Soup));
 		
-		products.add(new Product("Clatite", 6, R.drawable.dessert, Type.Dessert));
+		products.add(new Product("Clatite", 6, R.drawable.pancakes, Type.Dessert));
 		products.add(new Product("Papanasi", 12, R.drawable.dessert, Type.Dessert));
 		products.add(new Product("Placinta de mere", 8, R.drawable.dessert, Type.Dessert));
 		products.add(new Product("Placinta cu branza", 8, R.drawable.dessert, Type.Dessert));
@@ -74,12 +74,12 @@ public class DataProvider {
 		products.add(new Product("Snitele pui", 14, R.drawable.main_dish, Type.MainDish));
 		products.add(new Product("Snitele porc", 16, R.drawable.main_dish, Type.MainDish));
 		products.add(new Product("Copanele la gratar", 12, R.drawable.main_dish, Type.MainDish));
-		products.add(new Product("Tochitura dobrogeana", 13.5f, R.drawable.main_dish, Type.MainDish));
+		products.add(new Product("Tochitura moldoveneasca", 13.5f, R.drawable.main_dish, Type.MainDish));
 		products.add(new Product("Musaca de cartofi", 14, R.drawable.main_dish, Type.MainDish));
-		products.add(new Product("Lasagna", 16, R.drawable.main_dish, Type.MainDish));
-		products.add(new Product("Spaghete bolognese", 14, R.drawable.main_dish, Type.MainDish));
-		products.add(new Product("Spaghete carbonara", 14.5f, R.drawable.main_dish, Type.MainDish));
-		products.add(new Product("Spaghete milaneze", 13, R.drawable.main_dish, Type.MainDish));
+		products.add(new Product("Lasagna", 16, R.drawable.pasta, Type.MainDish));
+		products.add(new Product("Spaghete bolognese", 14, R.drawable.pasta, Type.MainDish));
+		products.add(new Product("Spaghete carbonara", 14.5f, R.drawable.pasta, Type.MainDish));
+		products.add(new Product("Spaghete milaneze", 13, R.drawable.pasta, Type.MainDish));
 		products.add(new Product("Platou pentru 2", 23, R.drawable.main_dish, Type.MainDish));
 		products.add(new Product("Pomana porcului", 25, R.drawable.main_dish, Type.MainDish));
 		
@@ -89,9 +89,9 @@ public class DataProvider {
 		products.add(new Product("Stella", 5, R.drawable.alcohol, Type.Alcoholic));
 		products.add(new Product("Pina Colada", 14, R.drawable.alcohol, Type.Alcoholic));
 		
-		products.add(new Product("Pepsi", 4, R.drawable.non_alcoholic, Type.NonAlcoholic));
-		products.add(new Product("Coca-Cola", 4, R.drawable.non_alcoholic, Type.NonAlcoholic));
-		products.add(new Product("Fanta", 4, R.drawable.non_alcoholic, Type.NonAlcoholic));
+		products.add(new Product("Pepsi", 4, R.drawable.soda_cans, Type.NonAlcoholic));
+		products.add(new Product("Coca-Cola", 4, R.drawable.soda_cans, Type.NonAlcoholic));
+		products.add(new Product("Fanta", 4, R.drawable.soda_cans, Type.NonAlcoholic));
 		products.add(new Product("Prigat", 5, R.drawable.non_alcoholic, Type.NonAlcoholic));
 		products.add(new Product("Virgin Mary", 8, R.drawable.non_alcoholic, Type.NonAlcoholic));
 		
@@ -139,7 +139,7 @@ public class DataProvider {
 	 * @param category the category
 	 * @return the products from category
 	 */
-	public ArrayList<Product> getProductsFromCategory(Type category)
+	public static ArrayList<Product> getProductsFromCategory(Type category)
 	{
 		ArrayList<Product> retProds=new ArrayList<Product>();
 		for(Product p:products)

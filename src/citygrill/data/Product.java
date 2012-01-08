@@ -6,13 +6,15 @@
  */
 package citygrill.data;
 
+import java.util.Random;
+
 /**
  * The Class Product.
  */
 public class Product {
 	
 	/**
-	 * The type of food
+	 * The type of food.
 	 */
 	public enum Type {
 		/** The Dessert. */
@@ -50,6 +52,9 @@ public class Product {
 	
 	/** The type. */
 	public Type type;
+	
+	/** The duration. */
+	public int duration;
 
 	/**
 	 * Instantiates a new product.
@@ -66,5 +71,7 @@ public class Product {
 		this.resource = resource;
 		this.id = ++globalID;
 		this.type = type;
+		Random rand=new Random();
+		this.duration=1+rand.nextInt()%15;	//generate a random duration, up to 15 minutes
 	}
 }

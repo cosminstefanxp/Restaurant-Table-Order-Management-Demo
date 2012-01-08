@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:gravity="center"
+	android:orientation="vertical" >
+
+	<ImageView
+		android:id="@+id/productImage"
+		android:layout_width="125dp"
+		android:layout_height="125dp"
+		android:scaleType="fitXY"
+		android:src="@drawable/food1" />
+
+	<TextView
+		android:id="@+id/productNameText"
+		android:layout_width="125dp"
+		android:layout_height="35dp"
+		android:gravity="center"
+		android:paddingTop="2dp"
+		android:text="Food 1"
+		android:textAppearance="?android:attr/textAppearanceMedium"
+		android:textSize="11dp" />
+
+	<TextView
+		android:id="@+id/productPriceText"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:includeFontPadding="false"
+		android:text="Price: 0"
+		android:textAppearance="?android:attr/textAppearanceSmall"
+		android:textSize="9dp" />
+
+</LinearLayout>

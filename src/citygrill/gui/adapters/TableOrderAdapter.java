@@ -1,4 +1,4 @@
-package citygrill.gui;
+package citygrill.gui.adapters;
 
 import android.content.Context;
 import android.graphics.Color;

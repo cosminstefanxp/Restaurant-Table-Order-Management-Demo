@@ -21,6 +21,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import citygrill.data.DataProvider;
 import citygrill.data.Order;
 import citygrill.data.TableOrder;
+import citygrill.gui.adapters.TableOrderAdapter;
 import citygrill.restaurant.Table;
 
 import com.order.R;
@@ -38,6 +39,12 @@ public class TableActivity extends Activity implements OnClickListener, OnItemCl
 	
 	/** The listview. */
 	ListView listview;
+	
+	/** The button add. */
+	ImageButton buttonAdd;
+	
+	/** The button finalize. */
+	ImageButton buttonFinalize;
 	
     /**
      * Called when the activity is first created.
@@ -59,19 +66,32 @@ public class TableActivity extends Activity implements OnClickListener, OnItemCl
 	    tableOrder=table.tableOrder;
 	    
 	    //Set data
+	    listview = (ListView) findViewById(R.id.tableListView);
+	    listview.setAdapter(new TableOrderAdapter(this, tableOrder));
+	    listview.setOnItemClickListener(this);
+	    
+	    buttonAdd =(ImageButton) findViewById(R.id.orderAddButton);
+	    buttonAdd.setOnClickListener(this);
+	    
+	    buttonFinalize =(ImageButton) findViewById(R.id.tableOrderFinalizaButton);
+	    buttonFinalize.setOnClickListener(this);
+
+	}
+	
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onStart()
+	 */
+	protected void onStart()
+	{
+		super.onStart();
+		
 	    TextView text= (TextView) findViewById(R.id.tableTitle);
 	    text.setText("Table "+table.id);
 	    
 	    text= (TextView) findViewById(R.id.tableCustomers);
 	    text.setText("Customers: "+table.curClients+"/"+table.maxClients+"");
 	    
-	    listview = (ListView) findViewById(R.id.tableListView);
-	    listview.setAdapter(new TableOrderAdapter(this, tableOrder));
-	    listview.setOnItemClickListener(this);
-	    
-	    ImageButton button=(ImageButton) findViewById(R.id.orderAddButton);
-	    button.setOnClickListener(this);
-
+	    listview.invalidateViews();
 	}
 
 	/* Event triggered at click on "New Order button"
@@ -80,10 +100,22 @@ public class TableActivity extends Activity implements OnClickListener, OnItemCl
 	 * @see android.view.View.OnClickListener#onClick(android.view.View)
 	 */
 	@Override
-	public void onClick(View arg0) {
-		table.tableOrder.orders.add(new Order());
-		this.listview.invalidateViews();
-		Toast.makeText(this, "Created a new order for this table", Toast.LENGTH_SHORT).show();
+	public void onClick(View button) {
+		if(button==buttonAdd)
+		{
+			table.tableOrder.orders.add(new Order());
+			this.listview.invalidateViews();
+			Toast.makeText(this, "Created a new order for this table", Toast.LENGTH_SHORT).show();
+		}
+		else
+		{
+			listview.setOnItemClickListener(null);
+			buttonAdd.setOnClickListener(null);
+			table.tableOrder=null;
+			table.empty=true;
+			table.curClients=0;
+			Toast.makeText(this, "Finalized the order!", Toast.LENGTH_SHORT).show();
+		}
 	}
 
 	/* Event triggered on click on one of the orders
@@ -96,7 +128,7 @@ public class TableActivity extends Activity implements OnClickListener, OnItemCl
 		Intent myIntent = new Intent(this, OrderActivity.class);
 		myIntent.putExtra("tableID", table.id);
 		myIntent.putExtra("orderID", table.tableOrder.orders.get(position).id);
-		this.startActivity(myIntent);		
+		this.startActivity(myIntent);
 	}
 
 }
